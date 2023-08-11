@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 @Component({
-  selector: 'album-list',
-  templateUrl: './album-list.component.html',
-  styleUrls: ['./album-list.component.scss']
+  selector: "album-list",
+  templateUrl: "./album-list.component.html",
+  styleUrls: ["./album-list.component.scss"],
 })
 export class AlbumListComponent implements OnInit {
   albumList: Array<any> = [];
 
-  constructor( private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get<any[]>('http://localhost:3000/album').subscribe((data: Array<any>) =>
-      this.albumList = data
-    );
+    this.http
+      .get<any[]>("http://localhost:3000/album")
+      .subscribe((data: Array<any>) => (this.albumList = data));
   }
 
   deleteAlbum(album: any, i: number) {

@@ -1,30 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { AlbumListComponent } from "../album-list/album-list.component";
 @Component({
-  selector: 'new-album-dialog',
-  templateUrl: 'new-album.dialog.html',
-  styleUrls: ['./new-album.dialog.scss']
+  selector: "new-album-dialog",
+  templateUrl: "new-album.dialog.html",
+  styleUrls: ["./new-album.dialog.scss"],
 })
-
 export class NewAlbumDialog implements OnInit {
   album = {
-    title: '',
+    title: "",
     year: 1900,
-    artist: '',
-    photoUrl: ''
+    artist: "",
+    photoUrl: "",
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   createNewAlbum(album: any) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
+        "Content-Type": "application/json",
+      }),
     };
-    this.http.post<any>('http://localhost:3000/album/create', JSON.stringify(album), httpOptions).subscribe();
+    this.http
+      .post<any>(
+        "http://localhost:3000/album/create",
+        JSON.stringify(album),
+        httpOptions
+      )
+      .subscribe();
   }
-
+  isValidAlbum(): boolean {
+    return this.album.title.trim() !== "" && this.album.artist.trim() !== "";
+  }
 }
