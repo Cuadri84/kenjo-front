@@ -13,7 +13,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  openDialogNewAlbum() {
-    this.dialog.open(NewAlbumDialog, { data: { test: true } });
+  async openDialogNewAlbum() {
+    const dialogRef = this.dialog.open(NewAlbumDialog, {
+      data: { test: true },
+    });
+
+    try {
+      const result = await dialogRef.afterClosed().toPromise();
+    } catch (error) {
+      console.error("Error in dialog:", error);
+    }
   }
 }

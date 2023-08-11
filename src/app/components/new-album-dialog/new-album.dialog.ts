@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { AlbumListComponent } from "../album-list/album-list.component";
+
 @Component({
   selector: "new-album-dialog",
   templateUrl: "new-album.dialog.html",
@@ -18,23 +18,28 @@ export class NewAlbumDialog implements OnInit {
 
   ngOnInit(): void {}
 
-  createNewAlbum(album: any) {
+  async createNewAlbum(album: any) {
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
       }),
     };
-    this.http
-      .post<any>(
-        "http://localhost:3000/album/create",
-        JSON.stringify(album),
-        httpOptions
-      )
-      .subscribe(() => {
-        // Recargar la página para mostrar el nuevo álbum
-        window.location.reload();
-      });
+
+    try {
+      await this.http
+        .post<any>(
+          "http://localhost:3000/album/create",
+          JSON.stringify(album),
+          httpOptions
+        )
+        .toPromise();
+
+      window.location.reload();
+    } catch (error) {
+      console.error("Error creating album:", error);
+    }
   }
+
   isValidAlbum(): boolean {
     return this.album.title.trim() !== "" && this.album.artist.trim() !== "";
   }

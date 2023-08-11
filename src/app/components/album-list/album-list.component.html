@@ -16,7 +16,18 @@
         <mat-icon class="edit-icon">delete</mat-icon>
       </button>
     </div>
-    <img class="album-img" [src]="album.photoUrl" alt="title" />
+    <img
+      class="album-img"
+      *ngIf="album.photoUrl"
+      [src]="album.photoUrl"
+      alt="title"
+    />
+    <img
+      class="album-img"
+      *ngIf="!album.photoUrl"
+      src="https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"
+      alt="default"
+    />
     <mat-form-field>
       <mat-label for="albumSearch"> Title </mat-label>
       <input

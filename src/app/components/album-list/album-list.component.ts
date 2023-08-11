@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import Swal from "sweetalert2";
+
 @Component({
   selector: "album-list",
   templateUrl: "./album-list.component.html",
@@ -11,14 +12,19 @@ export class AlbumListComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {
-    this.http
-      .get<any[]>("http://localhost:3000/album")
-      .subscribe((data: Array<any>) => (this.albumList = data));
+  async ngOnInit(): Promise<void> {
+    try {
+      const data = await this.http
+        .get<any[]>("http://localhost:3000/album")
+        .toPromise();
+      this.albumList = data;
+    } catch (error) {
+      console.error("Error loading album list:", error);
+    }
   }
 
-  deleteAlbum(album: any, i: number) {
-    Swal.fire({
+  async deleteAlbum(album: any, i: number): Promise<void> {
+    const result = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
@@ -26,14 +32,18 @@ export class AlbumListComponent implements OnInit {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.http
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await this.http
           .delete(`http://localhost:3000/album/${album._id}`)
-          .subscribe();
+          .toPromise();
         this.albumList.splice(i, 1);
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      } catch (error) {
+        console.error("Error deleting album:", error);
       }
-    });
+    }
   }
 }
