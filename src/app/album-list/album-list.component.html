@@ -16,7 +16,7 @@
         <mat-icon class="edit-icon">delete</mat-icon>
       </button>
     </div>
-    <img [src]="album.photoUrl" alt="title" width="100" />
+    <img class="album-img" [src]="album.photoUrl" alt="title" />
     <mat-form-field>
       <mat-label for="albumSearch"> Title </mat-label>
       <input
@@ -25,15 +25,28 @@
         name="title"
         [ngModel]="album.title"
         type="text"
+        readonly
       />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Year</mat-label>
-      <input matInput name="artist" [ngModel]="album.year" type="text" />
+      <input
+        matInput
+        name="artist"
+        [ngModel]="album.year"
+        type="text"
+        readonly
+      />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Artist</mat-label>
-      <input matInput name="artist" [ngModel]="album.artist" type="text" />
+      <input
+        matInput
+        name="artist"
+        [ngModel]="album.artist"
+        type="text"
+        readonly
+      />
     </mat-form-field>
   </mat-card>
 </div>
