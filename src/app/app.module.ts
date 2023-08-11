@@ -11,9 +11,9 @@ import { MatIconModule } from "@angular/material/icon";
 import { FormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
 
-import { AlbumListComponent } from "./album-list/album-list.component";
+import { AlbumListComponent } from "./components/album-list/album-list.component";
 import { HttpClientModule } from "@angular/common/http";
-import { NewAlbumDialog } from "src/app/new-album-dialog/new-album.dialog";
+import { NewAlbumDialog } from "src/app/components/new-album-dialog/new-album.dialog";
 
 @NgModule({
   declarations: [AppComponent, AlbumListComponent, NewAlbumDialog],

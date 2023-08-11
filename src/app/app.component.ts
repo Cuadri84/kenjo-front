@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { NewAlbumDialog } from "src/app/new-album-dialog/new-album.dialog";
+import { NewAlbumDialog } from "src/app/components/new-album-dialog/new-album.dialog";
 
 @Component({
   selector: "app-root",
