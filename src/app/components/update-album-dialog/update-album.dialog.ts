@@ -19,32 +19,24 @@ export class UpdateAlbumDialog implements OnInit {
   ngOnInit(): void {}
 
   async updateAlbum(album: any) {
-    if (this.isValidAlbum()) {
-      const httpOptions = {
-        headers: new HttpHeaders({
-          "Content-Type": "application/json",
-        }),
-      };
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+      }),
+    };
 
-      try {
-        await this.http
-          .put<any>(
-            `http://localhost:3000/album/${album._id}`,
-            JSON.stringify(album),
-            httpOptions
-          )
-          .toPromise();
+    try {
+      await this.http
+        .put<any>(
+          `http://localhost:3000/album/${album._id}`,
+          JSON.stringify(album),
+          httpOptions
+        )
+        .toPromise();
 
-        window.location.reload();
-      } catch (error) {
-        console.error("Error updating album:", error);
-      }
-    } else {
-      console.log("El álbum no es válido para actualización.");
+      window.location.reload();
+    } catch (error) {
+      console.error("Error updating album:", error);
     }
-  }
-
-  isValidAlbum(): boolean {
-    return this.album.title.trim() !== "" && this.album.artist.trim() !== "";
   }
 }

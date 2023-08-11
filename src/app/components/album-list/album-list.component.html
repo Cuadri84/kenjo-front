@@ -5,7 +5,11 @@
     *ngFor="let album of albumList; let i = index"
   >
     <div class="album-actions">
-      <button class="edition-button" mat-mini-fab>
+      <button
+        class="edition-button"
+        mat-mini-fab
+        (click)="openDialogUpdateAlbum()"
+      >
         <mat-icon class="edit-icon">edit</mat-icon>
       </button>
       <button

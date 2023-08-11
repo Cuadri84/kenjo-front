@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { MatDialog } from "@angular/material/dialog";
 import Swal from "sweetalert2";
+import { UpdateAlbumDialog } from "../update-album-dialog/update-album.dialog";
 
 @Component({
   selector: "album-list",
@@ -10,7 +12,7 @@ import Swal from "sweetalert2";
 export class AlbumListComponent implements OnInit {
   albumList: Array<any> = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public dialog: MatDialog) {}
 
   async ngOnInit(): Promise<void> {
     try {
@@ -20,6 +22,18 @@ export class AlbumListComponent implements OnInit {
       this.albumList = data;
     } catch (error) {
       console.error("Error loading album list:", error);
+    }
+  }
+
+  async openDialogUpdateAlbum() {
+    const dialogRef = this.dialog.open(UpdateAlbumDialog, {
+      data: { test: true },
+    });
+
+    try {
+      const result = await dialogRef.afterClosed().toPromise();
+    } catch (error) {
+      console.error("Error in dialog:", error);
     }
   }
 
