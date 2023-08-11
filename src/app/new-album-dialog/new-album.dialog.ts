@@ -30,7 +30,10 @@ export class NewAlbumDialog implements OnInit {
         JSON.stringify(album),
         httpOptions
       )
-      .subscribe();
+      .subscribe(() => {
+        // Recargar la página para mostrar el nuevo álbum
+        window.location.reload();
+      });
   }
   isValidAlbum(): boolean {
     return this.album.title.trim() !== "" && this.album.artist.trim() !== "";
