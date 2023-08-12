@@ -3,6 +3,21 @@
   display: flex;
   justify-content: space-around;
   background-color: rgb(252, 252, 252);
+  button {
+    margin: 0 2%;
+    background-color: #fffefe;
+    border: 3px solid transparent;
+    padding: 0px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+
+    &:hover {
+      background: #ba0a2b;
+      color: #fff;
+      border-color: white;
+    }
+  }
 }
 
 .kenjo-logo {
