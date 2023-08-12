@@ -1,8 +1,19 @@
 <div class="sort-options">
-  <button mat-button (click)="sortByStars()">Ordenar por Estrellas</button>
-  <button mat-button (click)="sortByArtist()">Ordenar por Artista</button>
-  <button mat-button (click)="sortByYear()">Ordenar por Año</button>
+  <button mat-button (click)="sortByStars()">Estrellas</button>
+  <button mat-button (click)="sortByArtist()">Artista</button>
+  <button mat-button (click)="sortByYear()">Año</button>
 </div>
+<div class="search-container">
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Buscar por Artista"
+      [(ngModel)]="searchArtist"
+      (ngModelChange)="onSearchChange()"
+    />
+  </mat-form-field>
+</div>
+
 <div class="main-body">
   <mat-card
     class="album-container"

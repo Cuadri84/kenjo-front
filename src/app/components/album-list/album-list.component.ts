@@ -12,6 +12,7 @@ import { UpdateAlbumDialog } from "../update-album-dialog/update-album.dialog";
 export class AlbumListComponent implements OnInit {
   albumList: Array<any> = [];
   selectedSortOption: string = "stars";
+  searchArtist: string = "";
 
   constructor(private http: HttpClient, public dialog: MatDialog) {}
 
@@ -39,6 +40,18 @@ export class AlbumListComponent implements OnInit {
 
   sortByYear() {
     this.albumList.sort((a, b) => a.year - b.year);
+  }
+
+  onSearchChange() {
+    // Filtra la lista de álbumes según el nombre del artista
+    if (this.searchArtist.trim() === "") {
+      // Si el campo de búsqueda está vacío, muestra todos los álbumes
+      this.ngOnInit();
+    } else {
+      this.albumList = this.albumList.filter((album) =>
+        album.artist.toLowerCase().includes(this.searchArtist.toLowerCase())
+      );
+    }
   }
 
   async openDialogUpdateAlbum(album: any) {

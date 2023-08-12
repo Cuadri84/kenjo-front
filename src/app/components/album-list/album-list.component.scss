@@ -2,21 +2,33 @@
   display: flex;
   justify-content: center;
   margin-top: 40px;
+
+  button {
+    margin: 0 2%;
+    background-color: #fffefe;
+    border: 5px solid transparent;
+    padding: 0px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+
+    &:hover {
+      background: #318aac;
+      color: #fff;
+      border-color: white;
+    }
+  }
 }
 
-.sort-options button {
-  margin: 0 50px;
-  background-color: #fffefe;
-  border: 5px solid transparent;
-  padding: 5px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
+.search-container {
+  margin-top: 50px; /* Agregado margen superior */
+  display: flex;
+  justify-content: center;
 
-.sort-options button:hover {
-  background: #318aac;
-  color: #fff !important;
-  border-color: white;
+  mat-form-field {
+    width: 40%; /* Reducido el ancho */
+    margin: 0;
+  }
 }
 
 .main-body {
