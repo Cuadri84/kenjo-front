@@ -1,4 +1,4 @@
-//Sort Styles
+// Sort Styles
 .sort-options {
   display: flex;
   justify-content: center;
@@ -13,6 +13,7 @@
     cursor: pointer;
     font-size: 14px;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+
     &:hover {
       background: #318aac;
       color: #fff;
@@ -21,7 +22,7 @@
   }
 }
 
-//Search Styles
+// Search Styles
 .search-container {
   margin-top: 50px;
   display: flex;
@@ -33,89 +34,78 @@
   }
 }
 
-//Albums styles
+// Albums styles
 .main-body {
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
   display: flex;
-  justify-self: center;
   justify-content: center;
   align-items: center;
   max-width: 90%;
-  flex-direction: row;
   flex-wrap: wrap;
   margin-top: 40px;
-}
 
-.album-container {
-  transition: transform 0.2s;
-  &:hover {
-    transform: scale(1.1);
+  .album-container {
+    transition: transform 0.2s;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    border: 1px solid grey;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    .album-img {
+      width: 90%;
+      height: 250px;
+      padding-bottom: 20px;
+    }
+
+    .album-actions {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      padding-bottom: 20px;
+    }
+
+    .edition-button {
+      background-color: #c0f4e4;
+      margin-right: 5px;
+      border-radius: 20px;
+      padding: 2px;
+      border: 1px solid #c9c8c8;
+
+      &:hover {
+        background: #dede0e;
+        color: #fff !important;
+      }
+    }
+
+    .delete-button:hover {
+      background: #ff0000;
+      color: #fff !important;
+    }
+
+    .edit-icon {
+      position: relative;
+      top: -4px;
+    }
+
+    // Stars
+    .star {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background: url("../../../assets/images/Star_.svg.png") no-repeat center
+        center;
+      background-size: contain;
+      margin-top: 20px;
+      padding-right: 20px;
+    }
   }
-}
-
-mat-form-field {
-  width: 90%;
-}
-
-.album-container {
-  padding: 20px;
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 300px;
-  border: 1px solid grey;
-}
-
-.album-img {
-  width: 90%;
-  height: 250px;
-  padding-bottom: 20px;
-}
-
-.album-actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 90%;
-  padding-bottom: 20px;
-}
-
-//EDIT and DELETE buttons
-.edition-button {
-  background-color: #c0f4e4;
-  margin-right: 5px;
-  border-radius: 20px;
-  padding: 2px;
-  border: 1px solid #c9c8c8;
-}
-
-.edition-button:hover {
-  background: #dede0e;
-  color: #fff !important;
-}
-
-.delete-button:hover {
-  background: #ff0000;
-  color: #fff !important;
-}
-
-.edit-icon {
-  position: relative;
-  top: -4px;
-}
-
-//STARS
-.star {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  background: url("../../../assets/images/Star_.svg.png") no-repeat center
-    center;
-  background-size: contain;
-  margin-top: 20px;
-  padding-right: 20px;
 }
 
 .empty-space {
