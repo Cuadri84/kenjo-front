@@ -1,5 +1,9 @@
+<div class="sort-options">
+  <button mat-button (click)="sortByStars()">Ordenar por Estrellas</button>
+  <button mat-button (click)="sortByArtist()">Ordenar por Artista</button>
+  <button mat-button (click)="sortByYear()">Ordenar por Año</button>
+</div>
 <div class="main-body">
-  <!-- Album component -->
   <mat-card
     class="album-container"
     *ngFor="let album of albumList; let i = index"

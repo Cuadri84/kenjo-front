@@ -1,3 +1,24 @@
+.sort-options {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.sort-options button {
+  margin: 0 50px;
+  background-color: #fffefe;
+  border: 5px solid transparent;
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sort-options button:hover {
+  background: #318aac;
+  color: #fff !important;
+  border-color: white;
+}
+
 .main-body {
   margin-right: auto;
   margin-left: auto;

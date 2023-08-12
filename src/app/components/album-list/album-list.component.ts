@@ -11,6 +11,7 @@ import { UpdateAlbumDialog } from "../update-album-dialog/update-album.dialog";
 })
 export class AlbumListComponent implements OnInit {
   albumList: Array<any> = [];
+  selectedSortOption: string = "stars";
 
   constructor(private http: HttpClient, public dialog: MatDialog) {}
 
@@ -26,6 +27,18 @@ export class AlbumListComponent implements OnInit {
   }
   getStarsArray(score: number): any[] {
     return new Array(score);
+  }
+
+  sortByStars() {
+    this.albumList.sort((a, b) => b.score - a.score);
+  }
+
+  sortByArtist() {
+    this.albumList.sort((a, b) => a.artist.localeCompare(b.artist));
+  }
+
+  sortByYear() {
+    this.albumList.sort((a, b) => a.year - b.year);
   }
 
   async openDialogUpdateAlbum(album: any) {
