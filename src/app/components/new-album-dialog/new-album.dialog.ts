@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { AlbumService } from "../../services/album.service";
 
 @Component({
   selector: "new-album-dialog",
@@ -15,34 +15,22 @@ export class NewAlbumDialog implements OnInit {
     score: 0,
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private albumService: AlbumService) {}
 
   ngOnInit(): void {}
 
-  //Create new album funtionality
+  // Create new album functionality
   async createNewAlbum(album: any) {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json",
-      }),
-    };
-
     try {
-      await this.http
-        .post<any>(
-          "http://localhost:3000/album/create",
-          JSON.stringify(album),
-          httpOptions
-        )
-        .toPromise();
-
-      window.location.reload();
+      await this.albumService.createAlbum(album).subscribe(() => {
+        this.albumService.getAlbumCreatedEvent().emit();
+      });
     } catch (error) {
       console.error("Error creating album:", error);
     }
   }
 
-  //disable confirm button if there is no album, artist or stars
+  // Disable confirm button if there is no album, artist, or stars
   isValidAlbum(): boolean {
     return (
       this.album.title.trim() !== "" &&

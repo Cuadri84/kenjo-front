@@ -1,7 +1,8 @@
 import { Component, Inject, Input, OnInit } from "@angular/core";
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import Swal from "sweetalert2";
+import { AlbumService } from "../../services/album.service"; // Ruta al servicio
+import { HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: "update-album-dialog",
@@ -16,8 +17,9 @@ export class UpdateAlbumDialog implements OnInit {
   @Input() score!: number;
 
   constructor(
-    private http: HttpClient,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    private albumService: AlbumService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<UpdateAlbumDialog>
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +30,7 @@ export class UpdateAlbumDialog implements OnInit {
     this.score = this.data.score;
   }
 
-  //Update album funtionality
+  // Update album functionality
   async updateAlbum() {
     const albumToUpdate = {
       _id: this.data._id,
@@ -54,15 +56,10 @@ export class UpdateAlbumDialog implements OnInit {
     });
     if (result.isConfirmed) {
       try {
-        await this.http
-          .put<any>(
-            `http://localhost:3000/album/${albumToUpdate._id}`,
-            JSON.stringify(albumToUpdate),
-            httpOptions
-          )
-          .toPromise();
-
-        window.location.reload();
+        await this.albumService.updateAlbum(albumToUpdate).subscribe(() => {
+          this.albumService.getAlbumUpdatedEvent().emit();
+          this.dialogRef.close();
+        });
       } catch (error) {
         console.error("Error updating album:", error);
       }

@@ -1,27 +1,48 @@
-import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import Swal from "sweetalert2";
 import { UpdateAlbumDialog } from "../update-album-dialog/update-album.dialog";
+import { AlbumService } from "../../services/album.service"; // Ruta al servicio
 
 @Component({
   selector: "album-list",
   templateUrl: "./album-list.component.html",
   styleUrls: ["./album-list.component.scss"],
 })
-export class AlbumListComponent implements OnInit {
+export class AlbumListComponent implements OnInit, OnDestroy {
   albumList: Array<any> = [];
   selectedSortOption: string = "stars";
   searchArtist: string = "";
 
-  constructor(private http: HttpClient, public dialog: MatDialog) {}
+  constructor(private albumService: AlbumService, public dialog: MatDialog) {}
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
+    this.loadAlbumList();
+    this.subscribeToAlbumEvents();
+  }
+  ngOnDestroy(): void {
+    this.unsubscribeFromAlbumEvents();
+  }
+  private subscribeToAlbumEvents(): void {
+    this.albumService.getAlbumCreatedEvent().subscribe(() => {
+      this.loadAlbumList();
+    });
+
+    this.albumService.getAlbumUpdatedEvent().subscribe(() => {
+      this.loadAlbumList();
+    });
+  }
+
+  private unsubscribeFromAlbumEvents(): void {
+    this.albumService.getAlbumCreatedEvent().unsubscribe();
+    this.albumService.getAlbumUpdatedEvent().unsubscribe();
+  }
+
+  async loadAlbumList(): Promise<void> {
     try {
-      const data = await this.http
-        .get<any[]>("http://localhost:3000/album")
-        .toPromise();
-      this.albumList = data;
+      this.albumService.getAlbumList().subscribe((data) => {
+        this.albumList = data;
+      });
     } catch (error) {
       console.error("Error loading album list:", error);
     }
@@ -75,7 +96,6 @@ export class AlbumListComponent implements OnInit {
       console.error("Error in dialog:", error);
     }
   }
-
   //Delete Button Functionality
   async deleteAlbum(album: any, i: number): Promise<void> {
     const result = await Swal.fire({
@@ -90,11 +110,10 @@ export class AlbumListComponent implements OnInit {
 
     if (result.isConfirmed) {
       try {
-        await this.http
-          .delete(`http://localhost:3000/album/${album._id}`)
-          .toPromise();
-        this.albumList.splice(i, 1);
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        await this.albumService.deleteAlbum(album._id).subscribe(() => {
+          this.albumList.splice(i, 1);
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        });
       } catch (error) {
         console.error("Error deleting album:", error);
       }
