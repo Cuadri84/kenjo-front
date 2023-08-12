@@ -25,9 +25,16 @@ export class AlbumListComponent implements OnInit {
     }
   }
 
-  async openDialogUpdateAlbum() {
+  async openDialogUpdateAlbum(album: any) {
+    console.log("Album data being passed to child:", album);
     const dialogRef = this.dialog.open(UpdateAlbumDialog, {
-      data: { test: true },
+      data: {
+        _id: album._id,
+        title: album.title,
+        photoUrl: album.photoUrl,
+        year: album.year,
+        artist: album.artist,
+      },
     });
 
     try {

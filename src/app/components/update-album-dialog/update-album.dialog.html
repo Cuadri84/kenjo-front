@@ -1,46 +1,29 @@
 <div class="new-album">
-  <img class="coverPhoto" [src]="album.photoUrl" width="100" />
+  <img class="coverPhoto" [src]="photoUrl" width="100" />
   <mat-form-field>
-    <input
-      matInput
-      #input="matInput"
-      name="photoUrl"
-      type="text"
-      placeholder="Photo URL"
-    />
+    <input matInput name="photoUrl" type="text" [(ngModel)]="photoUrl" />
   </mat-form-field>
   <mat-form-field>
     <mat-label for="albumSearch"> Title </mat-label>
-    <input
-      matInput
-      #input="matInput"
-      name="title"
-      type="text"
-      placeholder="Title"
-    />
+    <input matInput name="title" type="text" [(ngModel)]="title" />
   </mat-form-field>
   <mat-form-field>
     <mat-label>Year</mat-label>
-    <input matInput name="artist" type="text" placeholder="Year" />
+    <input matInput name="year" type="number" [(ngModel)]="year" />
   </mat-form-field>
   <mat-form-field>
     <mat-label>Artist</mat-label>
-    <input matInput name="artist" type="text" placeholder="Artist" />
+    <input matInput name="artist" type="text" [(ngModel)]="artist" />
   </mat-form-field>
   <div class="album-actions">
-    <button
-      class="confirm-button"
-      mat-raised-button
-      mat-dialog-close
-      (click)="updateAlbum(album)"
-    >
+    <button class="confirm-button" mat-raised-button (click)="updateAlbum()">
       Confirm
     </button>
     <button
       class="cancel-button"
       mat-raised-button
-      mat-dialog-close
       color="warn"
+      mat-dialog-close
     >
       Cancel
     </button>
