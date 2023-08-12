@@ -26,10 +26,12 @@ export class AlbumListComponent implements OnInit {
       console.error("Error loading album list:", error);
     }
   }
+
   getStarsArray(score: number): any[] {
     return new Array(score);
   }
 
+  //SORT by stars, artist or year
   sortByStars() {
     this.albumList.sort((a, b) => b.score - a.score);
   }
@@ -42,10 +44,9 @@ export class AlbumListComponent implements OnInit {
     this.albumList.sort((a, b) => a.year - b.year);
   }
 
+  //Search by artist name
   onSearchChange() {
-    // Filtra la lista de álbumes según el nombre del artista
     if (this.searchArtist.trim() === "") {
-      // Si el campo de búsqueda está vacío, muestra todos los álbumes
       this.ngOnInit();
     } else {
       this.albumList = this.albumList.filter((album) =>
@@ -54,6 +55,7 @@ export class AlbumListComponent implements OnInit {
     }
   }
 
+  //Edit Button functionality
   async openDialogUpdateAlbum(album: any) {
     console.log("Album data being passed to child:", album);
     const dialogRef = this.dialog.open(UpdateAlbumDialog, {
@@ -74,6 +76,7 @@ export class AlbumListComponent implements OnInit {
     }
   }
 
+  //Delete Button Functionality
   async deleteAlbum(album: any, i: number): Promise<void> {
     const result = await Swal.fire({
       title: "Are you sure?",

@@ -1,3 +1,4 @@
+//Sort Styles
 .sort-options {
   display: flex;
   justify-content: center;
@@ -20,17 +21,19 @@
   }
 }
 
+//Search Styles
 .search-container {
-  margin-top: 50px; /* Agregado margen superior */
+  margin-top: 50px;
   display: flex;
   justify-content: center;
 
   mat-form-field {
-    width: 40%; /* Reducido el ancho */
+    width: 40%;
     margin: 0;
   }
 }
 
+//Albums styles
 .main-body {
   margin-right: auto;
   margin-left: auto;

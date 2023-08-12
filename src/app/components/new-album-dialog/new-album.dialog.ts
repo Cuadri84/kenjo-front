@@ -19,6 +19,7 @@ export class NewAlbumDialog implements OnInit {
 
   ngOnInit(): void {}
 
+  //Create new album funtionality
   async createNewAlbum(album: any) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -41,6 +42,7 @@ export class NewAlbumDialog implements OnInit {
     }
   }
 
+  //disable confirm button if there is no album, artist or stars
   isValidAlbum(): boolean {
     return (
       this.album.title.trim() !== "" &&

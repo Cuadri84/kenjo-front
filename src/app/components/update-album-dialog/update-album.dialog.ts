@@ -28,6 +28,7 @@ export class UpdateAlbumDialog implements OnInit {
     this.score = this.data.score;
   }
 
+  //Update album funtionality
   async updateAlbum() {
     const albumToUpdate = {
       _id: this.data._id,
