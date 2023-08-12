@@ -15,6 +15,10 @@
     <mat-label>Artist</mat-label>
     <input matInput name="artist" type="text" [(ngModel)]="artist" />
   </mat-form-field>
+  <mat-form-field>
+    <mat-label>Stars</mat-label>
+    <input matInput name="stars" type="number" [(ngModel)]="score" />
+  </mat-form-field>
   <div class="album-actions">
     <button class="confirm-button" mat-raised-button (click)="updateAlbum()">
       Confirm

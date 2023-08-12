@@ -12,6 +12,7 @@ export class NewAlbumDialog implements OnInit {
     year: 1900,
     artist: "",
     photoUrl: "",
+    score: 0,
   };
 
   constructor(private http: HttpClient) {}
@@ -41,6 +42,10 @@ export class NewAlbumDialog implements OnInit {
   }
 
   isValidAlbum(): boolean {
-    return this.album.title.trim() !== "" && this.album.artist.trim() !== "";
+    return (
+      this.album.title.trim() !== "" &&
+      this.album.artist.trim() !== "" &&
+      (this.album.score === undefined || this.album.score <= 5)
+    );
   }
 }

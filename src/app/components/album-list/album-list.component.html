@@ -63,5 +63,11 @@
         readonly
       />
     </mat-form-field>
+    <div *ngIf="album.score" class="stars">
+      <ng-container *ngFor="let star of getStarsArray(album.score)">
+        <span class="star"></span>
+      </ng-container>
+    </div>
+    <div *ngIf="!album.score" class="empty-space"></div>
   </mat-card>
 </div>

@@ -24,6 +24,9 @@ export class AlbumListComponent implements OnInit {
       console.error("Error loading album list:", error);
     }
   }
+  getStarsArray(score: number): any[] {
+    return new Array(score);
+  }
 
   async openDialogUpdateAlbum(album: any) {
     console.log("Album data being passed to child:", album);
@@ -34,6 +37,7 @@ export class AlbumListComponent implements OnInit {
         photoUrl: album.photoUrl,
         year: album.year,
         artist: album.artist,
+        score: album.score,
       },
     });
 

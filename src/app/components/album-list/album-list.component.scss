@@ -11,6 +11,10 @@
   margin-top: 40px;
 }
 
+mat-form-field {
+  width: 90%;
+}
+
 .album-container {
   padding: 20px;
   margin: 20px;
@@ -51,4 +55,19 @@
 .edit-icon {
   position: relative;
   top: -4px;
+}
+
+.star {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: url("../../../assets/images/Star_.svg.png") no-repeat center
+    center;
+  background-size: contain;
+  margin-top: 20px;
+  padding-right: 20px;
+}
+
+.empty-space {
+  height: 55px;
 }

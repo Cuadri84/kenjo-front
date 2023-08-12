@@ -13,6 +13,7 @@ export class UpdateAlbumDialog implements OnInit {
   @Input() photoUrl!: string;
   @Input() year!: number;
   @Input() artist!: string;
+  @Input() score!: number;
 
   constructor(
     private http: HttpClient,
@@ -24,6 +25,7 @@ export class UpdateAlbumDialog implements OnInit {
     this.photoUrl = this.data.photoUrl;
     this.year = this.data.year;
     this.artist = this.data.artist;
+    this.score = this.data.score;
   }
 
   async updateAlbum() {
@@ -33,6 +35,7 @@ export class UpdateAlbumDialog implements OnInit {
       photoUrl: this.photoUrl,
       year: this.year,
       artist: this.artist,
+      score: this.score,
     };
 
     const httpOptions = {
