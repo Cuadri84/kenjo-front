@@ -28,17 +28,6 @@ To get started with the Your-Music Frontend, follow these steps:
 - TypeScript
 - Sass
 
-### Folder Structure
-
-The Your-Music Frontend project has the following folder structure:
-
-- `src/`: This folder contains the source code for the frontend application.
-- `app/`: Contains the Angular components, services, and modules.
-- `assets/`: Place your static assets like images, fonts, and stylesheets here.
-- `environments/`: Configuration files for different environments.
-- `angular.json`: Angular project configuration.
-- `tsconfig.json`: TypeScript configuration.
-- `package.json`: Contains project dependencies and scripts.
-- `README.md`: You are here!
+Enjoy!
 
 Contact: davidcuadrillerosaura@gmail.com
