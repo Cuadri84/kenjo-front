@@ -8,7 +8,7 @@ import { NewAlbumDialog } from "src/app/components/new-album-dialog/new-album.di
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
-  title = "kenjo-challenge-frontend";
+  title = "your-music-frontend";
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {}
